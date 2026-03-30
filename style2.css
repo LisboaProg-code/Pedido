@@ -14,11 +14,17 @@
 }
 
 body{
-    background: no-repeat linear-gradient(to bottom, #6d001a, #120003);
-    height: 100dvh;
+    background: linear-gradient(to bottom, #6d001a, #120003);
+    background-repeat: no-repeat;
+    height: 100%;
     width: 100vw;
     color: #d3d3d3;
+    margin: 0;
 }
+/* 
+::-webkit-scrollbar{
+  display: none;
+} */
 
 /* --Header-- */
 
@@ -150,3 +156,234 @@ ul li i:hover{
     font-size: 4rem;
     transform: translateY(-30%);
 }
+
+/* --msc-- */
+
+/* mensagem */
+
+.conteiner_mensagem{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.mensagem{
+    background-color: var(--cor-primaria);
+    width: 80%;
+    padding: 15px;
+    border-radius: 15px;
+    font-family: "Poppins", 'Times New Roman', Times, serif;
+    font-weight: 700;
+}
+
+.mensagem h1{
+    font-size: 1.2rem;
+    padding-bottom: 20px;
+}
+
+.mensagem p{
+    font-size: 1.5rem;
+    padding-bottom: 10px;
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+.mensagem span{
+    display: none;
+}
+
+.mensagem button{
+    width: 150px;
+    padding: 15px;
+    border-radius: 20px;
+    border: none;
+    font-size: .8rem;
+    font-weight: 600;
+    transition: background-color .3s ease;
+    cursor: pointer;
+}
+
+.mensagem button:hover{
+    background-color: #a3a3a3;
+}
+
+/* --mensagem-- */
+
+/* card */
+
+.conteiner-card{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.card{
+    width: 90%;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.img_card{
+    background-image: url(imgs/hero2.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+    padding: 10px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+}
+
+.conteiner_card_text{
+    background-color: #3f000f;
+    padding: 15px;
+    font-family: "Poppins", 'Times New Roman', Times, serif;
+}   
+
+.conteiner_card_text h1{
+    font-size: 1.5rem;
+}
+
+.conteiner_card_text h2{
+    font-size: 1rem;
+    font-weight: 400;
+    padding-bottom: 20px;
+}
+
+.card_dias{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.bloco{
+    width: 1fr;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+    font-size: 1.4rem;
+}
+
+.bloco p{
+    font-size: .8rem;
+}
+
+/* --CARD--  */
+
+/* STORY */ 
+
+.conteiner_story{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+    font-family: "Poppins", 'Times New Roman', Times, serif;
+}
+
+.story{
+    background-color: var(--cor-primaria);
+    width: 90%;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.story h1{
+    font-size: 1.2rem;
+}
+
+.fotos{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    padding-top: 20px;
+}
+
+.fotos1, .fotos2, .fotos3{
+    background-image: url(imgs/hero2.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 200px;
+    font-size: .5rem;
+    padding: 0px 0px 5px 5px;
+    border-radius: 10px;    
+    display: flex;
+    align-items: end;
+    transition: transform .5s ease;
+}
+
+.fotos1:hover, .fotos2:hover, .fotos3:hover{
+    transform: scale(1.05);
+}
+
+/* --STORY-- */
+
+/* CONQUISTAS */
+
+.conteiner_conquistas{
+    width: 100%;
+    display: flex;
+    padding-bottom: 20px;
+    justify-content: center;
+}
+
+.conquistas{
+    background-color: #3f000f;
+    width: 90%;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.tittle_conquistas{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Poppins", 'Times New Roman', Times, serif;
+    padding-bottom: 10px;
+}
+
+.tittle_conquistas h1{
+    font-size: 1.4rem;
+}
+
+.tittle_conquistas h2{
+    font-size: .9rem;
+    font-weight: 400;
+}
+
+.tittle_conquistas span{
+    background-color: #141414;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.blocos_conquista{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.bloco1-conquista, .bloco2-conquista, .bloco3-conquista, .bloco4-conquista{
+    background-color: #6d001a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 15px;
+    border: 3px solid #e7073b;
+    transition: transform .5s ease;
+}
+
+.bloco1-conquista:hover, .bloco2-conquista:hover, .bloco3-conquista:hover, .bloco4-conquista:hover{
+    transform: scale(1.05);
+}
+/* --CONQUISTAS-- */
+
+/* WRAPPED */
+
+
