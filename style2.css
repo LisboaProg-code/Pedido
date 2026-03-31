@@ -264,7 +264,7 @@ ul li i:hover{
     padding: 20px;
     text-align: center;
     border-radius: 10px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.5);
     font-size: 1.4rem;
 }
 
@@ -375,7 +375,7 @@ ul li i:hover{
     align-items: center;
     padding: 20px;
     border-radius: 15px;
-    border: 3px solid #e7073b;
+    border: 2px solid #e7073b;
     transition: transform .5s ease;
 }
 
@@ -386,4 +386,48 @@ ul li i:hover{
 
 /* WRAPPED */
 
+.conteiner_wrapped{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
 
+.wrapped{
+    width: 90%;
+    height: 350px;
+    border-radius: 15px;
+    padding: 15px;
+    background-image: url(imgs/wrapped.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: "Poppins", 'Times New Roman', Times, serif;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: column;
+    align-items: center;
+}
+
+.text_wrapped{
+    text-align: center;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+}
+
+.text_wrapped h1{
+    font-size: 1.8rem;
+}
+
+.wrapped button{
+    width: 50%;
+    padding: 15px;
+    font-family: "Poppins", 'Times New Roman', Times, serif;
+    background-color: #e1acf0;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+    transition: background-color .5s ease;
+}
+
+.wrapped button:hover{
+    background-color: #d19edf;
+}
