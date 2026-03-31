@@ -176,6 +176,9 @@ ul li i:hover{
     border-radius: 15px;
     font-family: "Poppins", 'Times New Roman', Times, serif;
     font-weight: 700;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    position: relative; 
 }
 
 .mensagem h1{
@@ -190,10 +193,6 @@ ul li i:hover{
     mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 }
 
-.mensagem span{
-    display: none;
-}
-
 .mensagem button{
     width: 150px;
     padding: 15px;
@@ -204,6 +203,99 @@ ul li i:hover{
     transition: background-color .3s ease;
     cursor: pointer;
 }
+
+.mensagem.expanded {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  border-radius: 0;
+  background-color: #580f41;
+  overflow-y: auto;
+
+}
+
+.mensagem.expanded p{
+    -webkit-mask-image: none;
+    mask-image: none;
+    
+}
+
+.content-full { 
+    display: none !important; 
+}
+
+.mensagem.expanded .content_preview { 
+    display: none !important;
+}
+
+.mensagem.expanded .content-full {
+    display: flex !important; 
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 100%;
+    padding: 20px;
+    gap: 20px;
+}
+
+.mensagem.expanded .content-full .sup-msg{
+    display: flex;
+    gap: 10px;
+    flex-flow: column;
+}
+
+.mensagem.expanded .content-full .bottom-msg{
+    align-self: center;
+}
+
+.mensagem.expanded .content-full button{
+    background-color: transparent;
+    background-color: white;
+    width: 20%;
+    padding: 5px;
+    font-size: 1.3rem;
+    transition: background-color .3s ease;
+}
+
+.mensagem.expanded .content-full button:hover{
+    background-color: #d3d3d3;
+}
+
+/* --mensagem controls-- */
+
+.mensagem.expanded .content-full .progress-player{
+    width: 100%;
+}
+
+.mensagem.expanded .content-full .conteiner_controls{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    font-size: 1.6rem;
+    gap: 30px;
+}
+
+.mensagem.expanded .content-full .controls{
+    font-size: 2rem;
+    display: flex;
+    gap: 20px;
+}
+
+
+.mensagem.expanded .content-full .controls .ri-play-circle-fill{
+    font-size: 4rem;
+    transform: translateY(-30%);
+}
+
+/* --mensagens controls--- */
+.mensagem .content_preview span{
+    display: none;
+}
+
 
 .mensagem button:hover{
     background-color: #a3a3a3;
@@ -225,6 +317,7 @@ ul li i:hover{
     width: 90%;
     border-radius: 15px;
     overflow: hidden;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.4);
 }
 
 .img_card{
@@ -289,6 +382,7 @@ ul li i:hover{
     width: 90%;
     border-radius: 15px;
     padding: 15px;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.4);
 }
 
 .story h1{
@@ -315,11 +409,117 @@ ul li i:hover{
     display: flex;
     align-items: end;
     transition: transform .5s ease;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
 }
 
 .fotos1:hover, .fotos2:hover, .fotos3:hover{
     transform: scale(1.05);
 }
+
+
+
+/* story expansion */
+
+.fotos1, .fotos2, .fotos3 {
+  background-color: #b33927;
+  border-radius: 20px;
+  padding: 20px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+  width: 100%; /* Largura dentro do container */
+}
+
+/* Estado Expandido */
+.fotos1.expanded, .fotos2.expanded, .fotos3.expanded {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  border-radius: 0;
+  overflow-y: auto;
+  background-image: none;
+  background: linear-gradient(to bottom, #6d001a, #120003);
+  padding: 0;
+}
+
+.fotos1.expanded:hover, .fotos2.expanded:hover, .fotos3.expanded:hover{
+    transform: none;
+}
+
+.content-full {
+    display: none; 
+}
+
+.fotos1.expanded .content-full,
+.fotos2.expanded .content-full,
+.fotos3.expanded .content-full {
+    display: flex !important; 
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    gap: 20px;
+    font-size: 2rem;
+}
+
+.fotos1.expanded .content-full .foto1-album1,
+.fotos2.expanded .content-full .foto2-album2,
+.fotos3.expanded .content-full .foto3-album3{
+    background-image: url(imgs/hero2.jpeg);
+    background-size: cover;
+    background-position: center;
+    width: 100dvw;
+    height: 100vh;
+}
+
+.fotos1.expanded .content_preview,
+.fotos2.expanded .content_preview,
+.fotos3.expanded .content_preview {
+    display: none; 
+}
+
+.foto1-album1,
+.foto2-album2,
+.foto3-album3 {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between; /* Joga as setas para as pontas */
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    transition: background-image 0.3s ease-in-out; /* Suaviza a troca de foto */
+}
+
+/* Estilo das setas */
+.foto1-album1 i,
+.foto2-album2 i,
+.foto3-album3 i {
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+    text-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    z-index: 10000;
+}
+
+/* Botão de fechar no topo */
+.close-story {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+}
+
+
+/* story expansion */
+
 
 /* --STORY-- */
 
@@ -337,6 +537,7 @@ ul li i:hover{
     width: 90%;
     padding: 15px;
     border-radius: 15px;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.4);
 }
 
 .tittle_conquistas{

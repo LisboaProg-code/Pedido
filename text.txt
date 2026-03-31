@@ -1,0 +1,43 @@
+<div class="card-container"> ----> div-fotos
+  <div id="special-card" class="card"> --> div-foto1
+    <div class="content-preview">
+      <button onclick="expandCard()">Mostrar Mensagem</button>
+    </div>
+    
+    <div class="content-full">
+      <p>Amor, obrigado por estar comigo...</p>
+      <button onclick="closeCard()" class="close-btn">Fechar</button>
+    </div>
+  </div>
+</div>
+
+------
+
+<div class="fotos">
+  <div class="fotos1" onclick="expandStory()">
+      <div class="content_preview">
+        <h1>album1</h1>
+      </div>
+
+      <div class="content-full">
+        botao
+        foto1
+        fotos2
+        foto3
+        botao
+      </div>  
+
+  </div>
+
+  <div class="fotos2">
+      <h1>album2</h1>
+  </div>
+
+  <div class="fotos3">
+      <h1>album3</h1>
+  </div>
+</div>
+
+-----
+
+<i class="ri-pause-circle-fill"></i>

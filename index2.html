@@ -66,9 +66,43 @@
         <div class="conteiner_mensagem" id="conteiner_mensagem">
 
             <div class="mensagem" id="mensagem">
-                <h1>Mensagem especial</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, minus! <span id="letra">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente aliquam saepe laborum ipsam maxime voluptatem illo veniam suscipit, voluptate harum!</span></p>
-                <button id="button" onclick="mostrarMensagem()">Mostrar mensagem</button>
+                <div class="content_preview">
+                    <h1>Mensagem especial</h1>
+                    
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, minus! <span id="letra">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente aliquam saepe laborum ipsam maxime voluptatem illo veniam suscipit, voluptate harum!</span></p>
+
+                    <button id="button" onclick="mostrarMensagem()">Mostrar mensagem</button>
+                </div>
+
+                <div class="content-full">
+                    <div class="sup-msg">
+                        <button onclick="closeCard()" class="close-btn">
+                            <i class="ri-arrow-down-s-line"></i>
+                        </button>
+                        <p>Amor, obrigado por estar comigo...</p>
+                    </div>
+
+                    <div class="bottom-msg">
+                        <div class="progress-player">
+                            <div class="progress" id="progress"></div>
+                            <div class="music-duraction">
+                                <span id="current-time">0:00</span>
+                                <span id="duration">0:00</span>
+                            </div>
+                        </div>
+                        <div class="conteiner_controls">
+                            <i class="ri-shuffle-line"></i>
+                            <div class="controls">
+                                <i class="ri-skip-back-line"></i>
+                                <i class="ri-play-circle-fill"></i>
+                                <i class="ri-skip-forward-line"></i>
+                            </div>
+                            <i class="ri-repeat-2-line"></i>
+                         </div>
+                    </div>
+
+                 </div>
+
             </div>
 
         </div>
@@ -130,18 +164,52 @@
 
         <div class="conteiner_story">
             <div class="story">
-                <h1>Conheça sobre Lívia e Mario</h1>
+                <h1>Conheça Mario e Lívia</h1>
                 <div class="fotos">
-                    <div class="fotos1">
-                        <h1>album1</h1>
+                    <div class="fotos1" id="foto1" onclick="expandStory()">
+                        <div class="content_preview">
+                            <h1>album1</h1>
+                        </div>
+
+                        <div class="content-full">
+                           <div class="foto1-album1" id="display-foto">
+                                <i class="ri-arrow-left-circle-fill" onclick="mudarFoto(-1, event)"></i>
+                                <i class="ri-arrow-right-circle-fill" onclick="mudarFoto(1, event)"></i>
+                                
+                                <span class="close-story" onclick="closeCard(event)">X</span>
+                            </div>
+                        </div>  
+
                     </div>
 
-                    <div class="fotos2">
-                        <h1>album2</h1>
+                    <div class="fotos2" id="foto2" onclick="expandStory2()">
+                        <div class="content_preview">
+                            <h1>album2</h1>
+                        </div>
+
+                        <div class="content-full">
+                            <div class="foto2-album2" id="display-foto2">
+                                <i class="ri-arrow-left-circle-fill" onclick="mudarFoto2(-1, event)"></i>
+                                <i class="ri-arrow-right-circle-fill" onclick="mudarFoto2(1, event)"></i>
+                                
+                                <span class="close-story" onclick="closeCard2(event)">X</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="fotos3">
-                        <h1>album3</h1>
+                    <div class="fotos3" id="foto3" onclick="expandStory3()">
+                        <div class="content_preview">
+                            <h1>album3</h1>
+                        </div>
+
+                        <div class="content-full">
+                            <div class="foto3-album3" id="display-foto3">
+                                <i class="ri-arrow-left-circle-fill" onclick="mudarFoto3(-1, event)"></i>
+                                <i class="ri-arrow-right-circle-fill" onclick="mudarFoto3(1, event)"></i>
+                                
+                                <span class="close-story" onclick="closeCard3(event)">X</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
