@@ -12,7 +12,7 @@ function mostrarMensagem() {
   });
 }
 
-function closeCard() {
+function closeCardMsg() {
   const card = document.getElementById('mensagem');
   document.startViewTransition(() => {
     card.classList.remove('expanded');
@@ -22,38 +22,38 @@ function closeCard() {
 /* ---------- */
 
 
-let ano = 0
-let meses = 0
-let dia = 208
+let dataInicial = new Date("2025-09-02T00:00:00")
 
 function verificarTempo(){
 
-    let data = new Date()
+    let agora = new Date()
 
-    let hora = data.getHours()
-    let min = data.getMinutes()
-    let seg = data.getSeconds()
+    let diferenca = agora - dataInicial
 
-    if(hora == 0 && min == 0 && seg == 0){
-        dia += 1
-    }
+    let totalSegundos = Math.floor(diferenca / 1000)
 
-    if(meses == 12){
-        meses = 0
-        ano += 1
-    }
+    let anos = Math.floor(totalSegundos / (60*60*24*365))
+    totalSegundos %= (60*60*24*365)
 
-    if(dia > 30){
-        meses += 1
-        dia -= 30
-    }
+    let meses = Math.floor(totalSegundos / (60*60*24*30))
+    totalSegundos %= (60*60*24*30)
 
-    document.getElementById("anoWeb").innerText = ano
+    let dias = Math.floor(totalSegundos / (60*60*24))
+    totalSegundos %= (60*60*24)
+
+    let horas = Math.floor(totalSegundos / (60*60))
+    totalSegundos %= (60*60)
+
+    let minutos = Math.floor(totalSegundos / 60)
+
+    let segundos = totalSegundos % 60
+
+    document.getElementById("anoWeb").innerText = anos
     document.getElementById("mesWeb").innerText = meses
-    document.getElementById("diasWeb").innerText = dia
-    document.getElementById("horasWeb").innerText = hora
-    document.getElementById("minutosWeb").innerText = min
-    document.getElementById("segundosWeb").innerText = seg
+    document.getElementById("diasWeb").innerText = dias
+    document.getElementById("horasWeb").innerText = horas
+    document.getElementById("minutosWeb").innerText = minutos
+    document.getElementById("segundosWeb").innerText = segundos
 }
 
 setInterval(verificarTempo, 1000)
@@ -83,9 +83,9 @@ function closeCard() {
 
 // Lista de fotos do seu álbum
 const listaFotos = [
-    'imgs/hero2.jpeg',
-    'imgs/outra-foto.jpg',
-    'imgs/mais-uma.png'
+    'imgs/eu-e-meuamor.jpeg',
+    'imgs/noises-na-escola.jpeg',
+    'imgs/cineminha.jpeg'
 ];
 
 let fotoAtual = 0;
@@ -145,9 +145,9 @@ function closeCard2() {
 
 // Lista de fotos do seu álbum
 const listaFotos2 = [
-    'imgs/hero2.jpeg',
-    'imgs/outra-foto.jpg',
-    'imgs/mais-uma.png'
+    'imgs/alien.jpeg',
+    'imgs/extremos.jpeg',
+    'imgs/palhaco2.jpeg'
 ];
 
 let foto2Atual = 0;
@@ -197,7 +197,7 @@ function expandStory3() {
   });
 }
 
-function closeCard2() {
+function closeCard3() {
   const card = document.getElementById('foto3');
   document.startViewTransition(() => {
     card.classList.remove('expanded');
@@ -206,9 +206,9 @@ function closeCard2() {
 
 // Lista de fotos do seu álbum
 const listaFotos3 = [
-    'imgs/hero2.jpeg',
-    'imgs/outra-foto.jpg',
-    'imgs/mais-uma.png'
+    'imgs/eu-e-meubem.jpeg',
+    'imgs/eu-admirando-ela.jpeg',
+    'imgs/nossas-primeiras-interacoes.jpeg'
 ];
 
 let foto3Atual = 0;
@@ -241,3 +241,6 @@ function closeCard3(event) {
         card.classList.remove('expanded');
     }
 }
+
+/* --------- */
+

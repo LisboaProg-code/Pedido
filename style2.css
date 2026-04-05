@@ -21,10 +21,10 @@ body{
     color: #d3d3d3;
     margin: 0;
 }
-/* 
+
 ::-webkit-scrollbar{
   display: none;
-} */
+} 
 
 /* --Header-- */
 
@@ -395,10 +395,10 @@ ul li i:hover{
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
     padding-top: 20px;
+    color: black;
 }
 
 .fotos1, .fotos2, .fotos3{
-    background-image: url(imgs/hero2.jpeg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -411,6 +411,25 @@ ul li i:hover{
     transition: transform .5s ease;
     box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.4);
     cursor: pointer;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+}
+
+.fotos1{
+    background-image: url(imgs/eu-e-meuamor.jpeg);
+}
+
+.fotos2{
+    background-image: url(imgs/alien.jpeg);
+    background-position: 25% 50%;
+}
+
+.fotos3{
+    background-image: url(imgs/eu-e-meubem.jpeg);
+}
+
+.fotos1 h1, .fotos2 h1, .fotos3 h1{
+    font-size: .8rem;
+    transform: translate(-20%, 10%);
 }
 
 .fotos1:hover, .fotos2:hover, .fotos3:hover{
@@ -422,7 +441,6 @@ ul li i:hover{
 /* story expansion */
 
 .fotos1, .fotos2, .fotos3 {
-  background-color: #b33927;
   border-radius: 20px;
   padding: 20px;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -441,7 +459,6 @@ ul li i:hover{
   z-index: 9999;
   border-radius: 0;
   overflow-y: auto;
-  background-image: none;
   background: linear-gradient(to bottom, #6d001a, #120003);
   padding: 0;
 }
@@ -469,11 +486,22 @@ ul li i:hover{
 .fotos1.expanded .content-full .foto1-album1,
 .fotos2.expanded .content-full .foto2-album2,
 .fotos3.expanded .content-full .foto3-album3{
-    background-image: url(imgs/hero2.jpeg);
     background-size: cover;
     background-position: center;
     width: 100dvw;
     height: 100vh;
+}
+
+.fotos1.expanded .content-full .foto2-album2{
+    background-image: url(imgs/eu-e-meuamor.jpeg);
+}
+
+.fotos2.expanded .content-full .foto2-album2{
+    background-image: url(imgs/alien.jpeg);
+}
+
+.fotos3.expanded .content-full .foto3-album3{
+    background-image: url(imgs/eu-e-meubem.jpeg);
 }
 
 .fotos1.expanded .content_preview,
