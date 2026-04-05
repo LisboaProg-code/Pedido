@@ -448,7 +448,6 @@ ul li i:hover{
   overflow: hidden;
   position: relative;
   width: 100%; /* Largura dentro do container */
-  user-select:none;
 }
 
 /* Estado Expandido */
@@ -523,7 +522,34 @@ ul li i:hover{
     padding: 0 20px;
     box-sizing: border-box;
     transition: background-image 0.3s ease-in-out; /* Suaviza a troca de foto */
-    pointer-events: none;
+}
+
+.nav{
+    position:absolute;
+    top:50%;
+    left:0;
+    width:100%;
+
+    transform:translateY(-50%);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 20px;
+    box-sizing:border-box;
+
+    pointer-events:none;
+}
+
+.nav button{
+    background:none;
+    border:none;
+    font-size:3rem;
+    color:white;
+    cursor:pointer;
+
+    pointer-events:auto; 
 }
 
 /* Estilo das setas */
@@ -537,11 +563,6 @@ ul li i:hover{
     z-index: 10000;
 }
 
-.foto1-album1 i,
-.foto2-album2 i,
-.foto3-album3 i, .close-story{
-    pointer-events: auto;
-}
 
 /* Botão de fechar no topo */
 .close-story {
