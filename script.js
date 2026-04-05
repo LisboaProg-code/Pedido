@@ -244,3 +244,48 @@ function closeCard3(event) {
 
 /* --------- */
 
+function wrapped(){
+  const container = document.querySelector(".conteiner_wrapped")
+  container.classList.add("expanded")
+
+  const wrapped = document.getElementById("wrapped");
+
+    if(!document.startViewTransition){
+        wrapped.classList.add("expanded");
+        return;
+    }
+
+    document.startViewTransition(()=>{
+        wrapped.classList.add("expanded");
+    });
+
+}
+
+function closeWrapped(event) {
+    if(event) event.stopPropagation();
+
+    const card = document.getElementById('wrapped');
+
+    if (document.startViewTransition) {
+        document.startViewTransition(() => {
+            card.classList.remove('expanded');
+        });
+    } else {
+        card.classList.remove('expanded');
+    }
+}
+
+let slideAtual = 0;
+
+function mudarSlide(direcao){
+
+    const slides = document.getElementById("slides");
+    const totalSlides = slides.children.length;
+
+    slideAtual += direcao;
+
+    if(slideAtual >= totalSlides) slideAtual = totalSlides - 1;
+    if(slideAtual < 0) slideAtual = 0;
+
+    slides.style.transform = `translateX(-${slideAtual * 100}vw)`;
+}

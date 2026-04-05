@@ -237,15 +237,54 @@
             </div>
         </div>
 
-        <div class="conteiner_wrapped">
-            <div class="wrapped">
+        <div class="conteiner_wrapped" id="wrapped">
+            <div class="wrapped preview">
                 <div class="text_wrapped">
                     <h1>Seu Relacionamento Wrapped</h1>
                     <p>Explore seu tempo em casal</p>
                 </div>
 
-                <button>Vamos lá</button>
+                <button onclick="wrapped()">Vamos lá</button>
+                
             </div>
+            
+            <div class="wrapped-full">
+                <span class="close" onclick="closeWrapped(event)">X</span>
+
+                <div class="slides-viewport">
+
+                    <div class="slides-track" id="slides">
+
+                        <div class="slide">
+
+                            <h1>slide1</h1>
+
+                        </div>
+
+                        <div class="slide">
+
+                            <h1>slide2</h1>
+
+                        </div>
+
+                        <div class="slide">
+
+                            <h1>slide3</h1>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="nav">
+                    <button onclick="mudarSlide(-1)"><i class="ri-arrow-left-circle-fill"></i> </button>
+                    <button onclick="mudarSlide(1)">
+                        <i class="ri-arrow-right-circle-fill"></i> </button>
+                </div>
+
+            </div>
+
         </div>
 
     </main>

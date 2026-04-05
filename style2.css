@@ -395,7 +395,8 @@ ul li i:hover{
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
     padding-top: 20px;
-    color: black;
+    color: white;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
 }
 
 .fotos1, .fotos2, .fotos3{
@@ -492,7 +493,7 @@ ul li i:hover{
     height: 100vh;
 }
 
-.fotos1.expanded .content-full .foto2-album2{
+.fotos1.expanded .content-full .foto1-album1{
     background-image: url(imgs/eu-e-meuamor.jpeg);
 }
 
@@ -620,6 +621,8 @@ ul li i:hover{
     display: flex;
     justify-content: center;
     padding: 20px;
+    view-transition-name: wrapped;
+    transition: all 0.6s cubic-bezier(.4,0,.2,1);
 }
 
 .wrapped{
@@ -659,4 +662,118 @@ ul li i:hover{
 
 .wrapped button:hover{
     background-color: #d19edf;
+}
+
+
+/* wrapped expansion */
+
+.wrapped-full{
+    display:none;
+}
+
+.conteiner_wrapped.expanded .wrapped-full{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    height:100%;
+    gap:40px;
+}
+
+.conteiner_wrapped.expanded .wrapped.preview{
+    display:none;
+}
+
+.conteiner_wrapped.expanded {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    border-radius: 0;
+    overflow-y: auto;
+    background: linear-gradient(to bottom, #6d001a, #120003);
+    padding: 0;
+}
+
+.conteiner_wrapped.expanded .wrapped{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100%;
+    flex-direction:column;
+    background-image: none;
+}
+
+.slides-viewport{
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+}
+
+.slides-track{
+    display:flex;
+    height:100%;
+    transition:transform 0.6s ease;
+}
+
+.slide{
+    min-width:100vw;
+    height:100vh;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    font-size:2rem;
+    color:white;
+}
+
+.conteiner_wrapped.expanded .wrapped .text_wrapped{
+    display: none
+}
+
+.conteiner_wrapped.expanded .wrapped button{
+    display: none;
+}
+
+.close{
+    display: flex;
+    position:absolute;
+    top:20px;
+    right:20px;
+    font-size: 2rem;
+    color:white;
+    cursor:pointer;
+    z-index:10000;
+}
+
+.nav{
+    position:absolute;
+    top:50%;
+    left:0;
+    width:100%;
+
+    transform:translateY(-50%);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 20px;
+    box-sizing:border-box;
+
+    pointer-events:none;
+}
+
+.nav button{
+    background:none;
+    border:none;
+    font-size:3rem;
+    color:white;
+    cursor:pointer;
+
+    pointer-events:auto; 
 }
