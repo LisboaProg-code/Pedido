@@ -62,11 +62,13 @@ setInterval(verificarTempo, 1000)
 
 function expandStory() {
   const card = document.getElementById('foto1');
+  const display = document.getElementById('display-foto');
 
-  // se já estiver expandido, não faz nada
-    if(card.classList.contains("expanded")) return;
-  
-  // Se estiver usando browsers modernos, a View Transitions API faz o trabalho pesado:
+  if(card.classList.contains("expanded")) return;
+
+  // define a primeira imagem
+  display.style.backgroundImage = `url(${listaFotos[fotoAtual]})`;
+
   if (!document.startViewTransition) {
     card.classList.add('expanded');
     return;
@@ -130,6 +132,8 @@ function expandStory2() {
 
   // se já estiver expandido, não faz nada
     if(card.classList.contains("expanded")) return;
+
+    display.style.backgroundImage = `url(${listaFotos2[foto2Atual]})`;
   
   // Se estiver usando browsers modernos, a View Transitions API faz o trabalho pesado:
   if (!document.startViewTransition) {
@@ -194,6 +198,8 @@ function expandStory3() {
 
   // se já estiver expandido, não faz nada
     if(card.classList.contains("expanded")) return;
+
+    display.style.backgroundImage = `url(${listaFotos3[foto3Atual]})`;
   
   // Se estiver usando browsers modernos, a View Transitions API faz o trabalho pesado:
   if (!document.startViewTransition) {
