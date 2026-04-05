@@ -79,13 +79,6 @@ function expandStory() {
   });
 }
 
-function closeCard() {
-  const card = document.getElementById('foto1');
-  document.startViewTransition(() => {
-    card.classList.remove('expanded');
-  });
-}
-
 // Lista de fotos do seu álbum
 const listaFotos = [
     'imgs/eu-e-meuamor.jpeg',
@@ -129,11 +122,12 @@ function closeCard(event) {
 
 function expandStory2() {
   const card = document.getElementById('foto2');
+  const display = document.getElementById('display-foto2');
 
   // se já estiver expandido, não faz nada
-    if(card.classList.contains("expanded")) return;
+  if(card.classList.contains("expanded")) return;
 
-    display.style.backgroundImage = `url(${listaFotos2[foto2Atual]})`;
+  display.style.backgroundImage = `url(${listaFotos2[foto2Atual]})`;
   
   // Se estiver usando browsers modernos, a View Transitions API faz o trabalho pesado:
   if (!document.startViewTransition) {
@@ -143,13 +137,6 @@ function expandStory2() {
 
   document.startViewTransition(() => {
     card.classList.add('expanded');
-  });
-}
-
-function closeCard2() {
-  const card = document.getElementById('foto2');
-  document.startViewTransition(() => {
-    card.classList.remove('expanded');
   });
 }
 
@@ -195,6 +182,7 @@ function closeCard2(event) {
 
 function expandStory3() {
   const card = document.getElementById('foto3');
+  const display = document.getElementById('display-foto3');
 
   // se já estiver expandido, não faz nada
     if(card.classList.contains("expanded")) return;
@@ -209,13 +197,6 @@ function expandStory3() {
 
   document.startViewTransition(() => {
     card.classList.add('expanded');
-  });
-}
-
-function closeCard3() {
-  const card = document.getElementById('foto3');
-  document.startViewTransition(() => {
-    card.classList.remove('expanded');
   });
 }
 
