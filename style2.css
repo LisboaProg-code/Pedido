@@ -448,6 +448,7 @@ ul li i:hover{
   overflow: hidden;
   position: relative;
   width: 100%; /* Largura dentro do container */
+  user-select:none;
 }
 
 /* Estado Expandido */
@@ -522,6 +523,7 @@ ul li i:hover{
     padding: 0 20px;
     box-sizing: border-box;
     transition: background-image 0.3s ease-in-out; /* Suaviza a troca de foto */
+    pointer-events: none;
 }
 
 /* Estilo das setas */
@@ -533,6 +535,12 @@ ul li i:hover{
     cursor: pointer;
     text-shadow: 0px 0px 10px rgba(0,0,0,0.5);
     z-index: 10000;
+}
+
+.foto1-album1 i,
+.foto2-album2 i,
+.foto3-album3 i, .close-story{
+    pointer-events: auto;
 }
 
 /* Botão de fechar no topo */

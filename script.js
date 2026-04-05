@@ -62,6 +62,9 @@ setInterval(verificarTempo, 1000)
 
 function expandStory() {
   const card = document.getElementById('foto1');
+
+  // se já estiver expandido, não faz nada
+    if(card.classList.contains("expanded")) return;
   
   // Se estiver usando browsers modernos, a View Transitions API faz o trabalho pesado:
   if (!document.startViewTransition) {
@@ -124,6 +127,9 @@ function closeCard(event) {
 
 function expandStory2() {
   const card = document.getElementById('foto2');
+
+  // se já estiver expandido, não faz nada
+    if(card.classList.contains("expanded")) return;
   
   // Se estiver usando browsers modernos, a View Transitions API faz o trabalho pesado:
   if (!document.startViewTransition) {
@@ -185,6 +191,9 @@ function closeCard2(event) {
 
 function expandStory3() {
   const card = document.getElementById('foto3');
+
+  // se já estiver expandido, não faz nada
+    if(card.classList.contains("expanded")) return;
   
   // Se estiver usando browsers modernos, a View Transitions API faz o trabalho pesado:
   if (!document.startViewTransition) {
