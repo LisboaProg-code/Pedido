@@ -67,7 +67,7 @@ function expandStory() {
   if(card.classList.contains("expanded")) return;
 
   // define a primeira imagem
-  display.style.backgroundImage = `url(${listaFotos[fotoAtual]})`;
+  display.style.backgroundImage = `url(${listaFotos1[foto1Atual]})`;
 
   if (!document.startViewTransition) {
     card.classList.add('expanded');
@@ -80,29 +80,26 @@ function expandStory() {
 }
 
 // Lista de fotos do seu álbum
-const listaFotos = [
+const listaFotos1 = [
     'imgs/eu-e-meuamor.jpeg',
     'imgs/noises-na-escola.jpeg',
     'imgs/cineminha.jpeg'
 ];
 
-let fotoAtual = 0;
+let foto1Atual = 0;
 
-function mudarFoto(direcao, event) {
-    // Impede que o clique na seta feche o card ou dispare o expandStory novamente
-    event.stopPropagation();
+function mudarFt1(direcao) {
 
     const display = document.getElementById('display-foto');
     
-    // Atualiza o index
-    fotoAtual += direcao;
+    foto1Atual += direcao;
 
-    // Loop: se chegar no fim volta pro começo, se for pra trás do zero vai pro fim
-    if (fotoAtual >= listaFotos.length) fotoAtual = 0;
-    if (fotoAtual < 0) fotoAtual = listaFotos.length - 1;
+    // Lógica de Loop que você já usava
+    if (foto1Atual >= listaFotos1.length) foto1Atual = 0;
+    if (foto1Atual < 0) foto1Atual = listaFotos1.length - 1;
 
-    // Aplica a nova imagem
-    display.style.backgroundImage = `url(${listaFotos[fotoAtual]})`;
+    // Aplica a nova imagem no fundo
+    display.style.backgroundImage = `url(${listaFotos1[foto1Atual]})`;
 }
 
 // Ajuste na função de fechar para o novo ID e evitar bugs
@@ -149,20 +146,17 @@ const listaFotos2 = [
 
 let foto2Atual = 0;
 
-function mudarFoto2(direcao, event) {
-    // Impede que o clique na seta feche o card ou dispare o expandStory novamente
-    event.stopPropagation();
+function mudarFt2(direcao) {
 
     const display = document.getElementById('display-foto2');
     
-    // Atualiza o index
     foto2Atual += direcao;
 
-    // Loop: se chegar no fim volta pro começo, se for pra trás do zero vai pro fim
+    // Lógica de Loop que você já usava
     if (foto2Atual >= listaFotos2.length) foto2Atual = 0;
     if (foto2Atual < 0) foto2Atual = listaFotos2.length - 1;
 
-    // Aplica a nova imagem
+    // Aplica a nova imagem no fundo
     display.style.backgroundImage = `url(${listaFotos2[foto2Atual]})`;
 }
 
@@ -200,6 +194,28 @@ function expandStory3() {
   });
 }
 
+let foto3Atual = 0;
+const listaFotos3 = [
+    'imgs/eu-e-meubem.jpeg',
+    'imgs/eu-admirando-ela.jpeg',
+    'imgs/nossas-primeiras-interacoes.jpeg'
+];
+
+function mudarFt3(direcao) {
+    // Não precisamos de event.stopPropagation() aqui se as áreas 
+    // de clique estiverem configuradas corretamente no CSS.
+
+    const display = document.getElementById('display-foto3');
+    
+    foto3Atual += direcao;
+
+    // Lógica de Loop que você já usava
+    if (foto3Atual >= listaFotos3.length) foto3Atual = 0;
+    if (foto3Atual < 0) foto3Atual = listaFotos3.length - 1;
+
+    // Aplica a nova imagem no fundo
+    display.style.backgroundImage = `url(${listaFotos3[foto3Atual]})`;
+}
 
 // Ajuste na função de fechar para o novo ID e evitar bugs
 function closeCard3(event) {
@@ -299,27 +315,4 @@ function mudarSlide(direcao){
     if(slideAtual < 0) slideAtual = 0;
 
     slides.style.transform = `translateX(-${slideAtual * 100}vw)`;
-}
-
-let foto3Atual = 0;
-const listaFotos3 = [
-    'imgs/eu-e-meubem.jpeg',
-    'imgs/eu-admirando-ela.jpeg',
-    'imgs/nossas-primeiras-interacoes.jpeg'
-];
-
-function mudarFt3(direcao) {
-    // Não precisamos de event.stopPropagation() aqui se as áreas 
-    // de clique estiverem configuradas corretamente no CSS.
-
-    const display = document.getElementById('display-foto3');
-    
-    foto3Atual += direcao;
-
-    // Lógica de Loop que você já usava
-    if (foto3Atual >= listaFotos3.length) foto3Atual = 0;
-    if (foto3Atual < 0) foto3Atual = listaFotos3.length - 1;
-
-    // Aplica a nova imagem no fundo
-    display.style.backgroundImage = `url(${listaFotos3[foto3Atual]})`;
 }

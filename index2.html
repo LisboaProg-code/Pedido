@@ -66,7 +66,7 @@
         <div class="conteiner_mensagem" id="conteiner_mensagem">
 
             <div class="mensagem" id="mensagem">
-                <div class="content_preview">
+                <div class="content-preview">
                     <h1>Mensagem especial</h1>
                     
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, minus! <span id="letra">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente aliquam saepe laborum ipsam maxime voluptatem illo veniam suscipit, voluptate harum!</span></p>
@@ -173,8 +173,10 @@
 
                         <div class="content-full">
                            <div class="foto1-album1" id="display-foto">
-                                <i class="ri-arrow-left-circle-fill" onclick="mudarFoto(-1, event)"></i>
-                                <i class="ri-arrow-right-circle-fill" onclick="mudarFoto(1, event)"></i>
+                                <div class="controles-invisiveis">
+                                    <div class="area-clique esquerda" onclick="mudarFt1(-1)"></div>
+                                    <div class="area-clique direita" onclick="mudarFt1(1)"></div>
+                                </div>
                                 
                                 <span class="close-story" onclick="closeCard(event)">X</span>
                             </div>
@@ -189,8 +191,10 @@
 
                         <div class="content-full">
                             <div class="foto2-album2" id="display-foto2">
-                                <i class="ri-arrow-left-circle-fill" onclick="mudarFoto2(-1, event)"></i>
-                                <i class="ri-arrow-right-circle-fill" onclick="mudarFoto2(1, event)"></i>
+                                <div class="controles-invisiveis">
+                                    <div class="area-clique esquerda" onclick="mudarFt2(-1)"></div>
+                                    <div class="area-clique direita" onclick="mudarFt2(1)"></div>
+                                </div>
                                 
                                 <span class="close-story" onclick="closeCard2(event)">X</span>
                             </div>
@@ -260,7 +264,7 @@
                     
                     <div class="slides-track" id="slides">
                         
-                        <div class="slide" id="slide1">
+                        <div class="slide slide-escada">
                             <div class="escada topo-esquerda">
                                 <span></span><span></span><span></span><span></span>
                             </div>
@@ -279,9 +283,23 @@
 
                         </div>
 
-                        <div class="slide">
+                        <div class="slide slide-escada">
 
-                            <h1>slide2</h1>
+                            <div class="escada topo-esquerda">
+                                <span></span><span></span><span></span><span></span>
+                            </div>
+                            <div class="escada topo-direita">
+                                <span></span><span></span><span></span><span></span>
+                            </div>
+                            <div class="escada baixo-esquerda">
+                                <span></span><span></span><span></span><span></span>
+                            </div>
+                            <div class="escada baixo-direita">
+                                <span></span><span></span><span></span><span></span>
+                            </div>
+
+                            <h1>O Wrapped de vocês</h1>
+                            <p>223 dias de risadas, momentos felizes e tristes mas sempre muito amor</p>
 
                         </div>
 
