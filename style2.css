@@ -483,22 +483,26 @@ ul li i:hover{
 .fotos2.expanded .content-full,
 .fotos3.expanded .content-full {
     display: flex !important; 
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
     height: 100%;
-    gap: 20px;
-    font-size: 2rem;
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
 }
 
 .fotos1.expanded .content-full .foto1-album1,
 .fotos2.expanded .content-full .foto2-album2,
 .fotos3.expanded .content-full .foto3-album3{
+    width: 100vw;
+    height: 100vh;
+    position: relative; /* Isso prende os controles invisíveis aqui */
     background-size: cover;
     background-position: center;
-    width: 100dvw;
-    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 
 .fotos1.expanded .content-full .foto1-album1{
     background-image: url(imgs/eu-e-meuamor.jpeg);
@@ -529,34 +533,7 @@ ul li i:hover{
     padding: 0 20px;
     box-sizing: border-box;
     transition: background-image 0.3s ease-in-out; /* Suaviza a troca de foto */
-}
-
-.nav{
-    position:absolute;
-    top:50%;
-    left:0;
-    width:100%;
-
-    transform:translateY(-50%);
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    padding:0 20px;
-    box-sizing:border-box;
-
-    pointer-events:none;
-}
-
-.nav button{
-    background:none;
-    border:none;
-    font-size:3rem;
-    color:white;
-    cursor:pointer;
-
-    pointer-events:auto; 
+    position: relative;
 }
 
 /* Estilo das setas */
@@ -580,6 +557,7 @@ ul li i:hover{
     font-size: 2rem;
     cursor: pointer;
     font-family: Arial, sans-serif;
+    z-index: 1000000;
 }
 
 
@@ -694,6 +672,7 @@ ul li i:hover{
     border-radius: 15px;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
     transition: background-color .5s ease;
+    cursor: pointer;
 }
 
 .wrapped button:hover{
@@ -714,6 +693,15 @@ ul li i:hover{
     justify-content:center;
     height:100%;
     gap:40px;
+    background: linear-gradient(270deg, #5f0016, #120003, #3f000f);
+    background-size: 600% 600%;
+    animation: gradientBG 10s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .conteiner_wrapped.expanded .wrapped.preview{
@@ -729,7 +717,7 @@ ul li i:hover{
     z-index: 9999;
     border-radius: 0;
     overflow-y: auto;
-    background: linear-gradient(to bottom, #6d001a, #120003);
+    background: black;
     padding: 0;
 }
 
@@ -765,10 +753,41 @@ ul li i:hover{
 
     font-size:2rem;
     color:white;
+
+    font-family: "Poppins", 'Times New Roman', Times, serif;
+
+    z-index: 2;
+
+    text-shadow: 0px 0px 20px rgba(0, 0, 0, 5);
+
 }
 
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes entrada {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
 .conteiner_wrapped.expanded .wrapped .text_wrapped{
-    display: none
+    display: none;
 }
 
 .conteiner_wrapped.expanded .wrapped button{
@@ -783,33 +802,197 @@ ul li i:hover{
     font-size: 2rem;
     color:white;
     cursor:pointer;
-    z-index:10000;
+    z-index:100000;
 }
 
-.nav{
-    position:absolute;
-    top:50%;
-    left:0;
-    width:100%;
-
-    transform:translateY(-50%);
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    padding:0 20px;
-    box-sizing:border-box;
-
-    pointer-events:none;
+.controles-invisiveis {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    z-index: 10000; /* Fica na frente de tudo */
+    pointer-events: none; /* O container pai não bloqueia, mas os filhos sim */
 }
 
-.nav button{
-    background:none;
-    border:none;
-    font-size:3rem;
-    color:white;
-    cursor:pointer;
-
-    pointer-events:auto; 
+.area-clique {
+    flex: 1; /* Divide a tela em duas metades iguais */
+    height: 100%;
+    pointer-events: auto; /* Faz o clique funcionar nessas áreas */
+    cursor: pointer;
+    /* background: rgba(255, 0, 0, 0.1); */ /* Descomente esta linha para testar onde os cliques estão caindo */
 }
+
+/* Opcional: cursores diferentes para saber onde clicar */
+.area-clique.esquerda { cursor: w-resize; }
+.area-clique.direita { cursor: e-resize; }
+
+/* DENTRO DO WRAPPED - SLIDES */
+
+.escada {
+    position: absolute;
+    display: flex;
+    gap: 6px;
+    z-index: 1;
+    pointer-events: none;
+    animation: Transparentes 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes Transparentes {
+    0% {
+        opacity: 0.2; /* Não recomendo 0 total para não sumir de vez, mas pode usar 0 se preferir */
+        transform: scale(0.95); /* Dá um leve efeito de movimento junto */
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.escada span {
+    width: 30px;
+    /* Se quiser a cor exata do print (verde mais fechado): */
+    background: linear-gradient(to bottom, #cf2298, #5e0f45); 
+    pointer-events: none;
+}
+
+/* --- TOPO ESQUERDA --- */
+.topo-esquerda { 
+    top: 0; 
+    left: 0px; 
+    align-items: flex-start; 
+}
+.topo-esquerda span:nth-child(1) { 
+    height: 250px; 
+}
+.topo-esquerda span:nth-child(2) { 
+    height: 210px; 
+}
+.topo-esquerda span:nth-child(3) { 
+    height: 170px; 
+}
+.topo-esquerda span:nth-child(4) { 
+    height: 140px; 
+}
+.topo-esquerda span:nth-child(5) { 
+    height: 110px; 
+}
+
+/* --- TOPO DIREITA (Invertida) --- */
+.topo-direita { 
+    top: 0; 
+    right: 0px; 
+    align-items: flex-start; 
+}
+
+.topo-direita span:nth-child(1) { 
+    height: 140px; 
+}
+.topo-direita span:nth-child(2) { 
+    height: 170px; 
+}
+.topo-direita span:nth-child(3) { 
+    height: 210px; 
+}
+.topo-direita span:nth-child(4) { 
+    height: 250px; 
+}
+
+/* --- BAIXO ESQUERDA --- */
+.baixo-esquerda { 
+    bottom: 0; 
+    left: 0px; 
+    align-items: flex-end; 
+}
+.baixo-esquerda span:nth-child(1) { 
+    height: 250px; 
+}
+.baixo-esquerda span:nth-child(2) { 
+    height: 210px; 
+}
+.baixo-esquerda span:nth-child(3) { 
+    height: 170px; 
+}
+.baixo-esquerda span:nth-child(4) { 
+    height: 140px; 
+}
+.baixo-esquerda span:nth-child(5) { 
+    height: 110px; 
+}
+
+/* --- BAIXO DIREITA (Invertida) --- */
+.baixo-direita { 
+    bottom: 0; 
+    right: 0px; 
+    align-items: flex-end; 
+}
+
+.baixo-direita span:nth-child(1) { 
+    height: 140px; 
+}
+.baixo-direita span:nth-child(2) { 
+    height: 170px; 
+}
+.baixo-direita span:nth-child(3) { 
+    height: 210px; 
+}
+.baixo-direita span:nth-child(4) { 
+    height: 250px; 
+}
+
+#hearts-container {
+  position: absolute; /* relativo ao wrapped-full */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes subir {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
+
+.heart {
+  position: absolute;
+  bottom: 0;
+  animation: subir linear forwards;
+}
+
+
+#slide1{
+    color: var(--cor-primaria);
+}
+
+#slide1 h1{
+    font-size: 2rem;
+    animation: entrada 2s ease ,pulse 2s ease-in-out infinite;
+}
+
+#slide1 p{
+    font-size: 1rem;
+    width: 50%;
+    text-align: center;
+    color: white;
+    animation: entrada 2s ease ,pulse 2s ease-in-out infinite;
+
+}
+

@@ -200,31 +200,6 @@ function expandStory3() {
   });
 }
 
-// Lista de fotos do seu álbum
-const listaFotos3 = [
-    'imgs/eu-e-meubem.jpeg',
-    'imgs/eu-admirando-ela.jpeg',
-    'imgs/nossas-primeiras-interacoes.jpeg'
-];
-
-let foto3Atual = 0;
-
-function mudarFoto3(direcao, event) {
-    // Impede que o clique na seta feche o card ou dispare o expandStory novamente
-    event.stopPropagation();
-
-    const display = document.getElementById('display-foto3');
-    
-    // Atualiza o index
-    foto3Atual += direcao;
-
-    // Loop: se chegar no fim volta pro começo, se for pra trás do zero vai pro fim
-    if (foto3Atual >= listaFotos3.length) foto3Atual = 0;
-    if (foto3Atual < 0) foto3Atual = listaFotos3.length - 1;
-
-    // Aplica a nova imagem
-    display.style.backgroundImage = `url(${listaFotos3[foto3Atual]})`;
-}
 
 // Ajuste na função de fechar para o novo ID e evitar bugs
 function closeCard3(event) {
@@ -240,9 +215,45 @@ function closeCard3(event) {
 
 /* --------- */
 
+
+function criarCoracao() {
+  const container = document.getElementById("hearts-container");
+
+  if (!container) {
+    console.log("container não encontrado");
+    return;
+  }
+
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+
+  heart.innerHTML = "♥️";
+
+  heart.style.left = Math.random() * 100 + "%";
+  heart.style.fontSize = (Math.random() * 5 + 10) + "px";
+  heart.style.animationDuration = (Math.random() * 5 + 3) + "s";
+
+  container.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 5000);
+}
+
+// só cria corações quando o wrapped estiver aberto
+let intervalo;
+
+function iniciarCoracoes() {
+  intervalo = setInterval(criarCoracao, 500);
+}
+
+function pararCoracoes() {
+  clearInterval(intervalo);
+}
+
 function wrapped(){
   const container = document.querySelector(".conteiner_wrapped")
   container.classList.add("expanded")
+  document.querySelector(".wrapped-full").style.display = "block";
+  iniciarCoracoes();
 
   const wrapped = document.getElementById("wrapped");
 
@@ -254,6 +265,7 @@ function wrapped(){
     document.startViewTransition(()=>{
         wrapped.classList.add("expanded");
     });
+
 
 }
 
@@ -269,6 +281,9 @@ function closeWrapped(event) {
     } else {
         card.classList.remove('expanded');
     }
+
+    document.querySelector(".wrapped-full").style.display = "none";
+    pararCoracoes();
 }
 
 let slideAtual = 0;
@@ -284,4 +299,27 @@ function mudarSlide(direcao){
     if(slideAtual < 0) slideAtual = 0;
 
     slides.style.transform = `translateX(-${slideAtual * 100}vw)`;
+}
+
+let foto3Atual = 0;
+const listaFotos3 = [
+    'imgs/eu-e-meubem.jpeg',
+    'imgs/eu-admirando-ela.jpeg',
+    'imgs/nossas-primeiras-interacoes.jpeg'
+];
+
+function mudarFt3(direcao) {
+    // Não precisamos de event.stopPropagation() aqui se as áreas 
+    // de clique estiverem configuradas corretamente no CSS.
+
+    const display = document.getElementById('display-foto3');
+    
+    foto3Atual += direcao;
+
+    // Lógica de Loop que você já usava
+    if (foto3Atual >= listaFotos3.length) foto3Atual = 0;
+    if (foto3Atual < 0) foto3Atual = listaFotos3.length - 1;
+
+    // Aplica a nova imagem no fundo
+    display.style.backgroundImage = `url(${listaFotos3[foto3Atual]})`;
 }

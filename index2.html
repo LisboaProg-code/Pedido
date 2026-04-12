@@ -204,8 +204,10 @@
 
                         <div class="content-full">
                             <div class="foto3-album3" id="display-foto3">
-                                <i class="ri-arrow-left-circle-fill"onclick="mudarFoto3(-1, event)"></i>
-                                <i class="ri-arrow-right-circle-fill" onclick="mudarFoto3(1, event)"></i>
+                                <div class="controles-invisiveis">
+                                    <div class="area-clique esquerda" onclick="mudarFt3(-1)"></div>
+                                    <div class="area-clique direita" onclick="mudarFt3(1)"></div>
+                                </div>
                                 
                                 <span class="close-story" onclick="closeCard3(event)">X</span>
                             </div>
@@ -251,13 +253,29 @@
             <div class="wrapped-full">
                 <span class="close" onclick="closeWrapped(event)">X</span>
 
+                <div id="hearts-container"></div>
+                
+                
                 <div class="slides-viewport">
-
+                    
                     <div class="slides-track" id="slides">
+                        
+                        <div class="slide" id="slide1">
+                            <div class="escada topo-esquerda">
+                                <span></span><span></span><span></span><span></span>
+                            </div>
+                            <div class="escada topo-direita">
+                                <span></span><span></span><span></span><span></span>
+                            </div>
+                            <div class="escada baixo-esquerda">
+                                <span></span><span></span><span></span><span></span>
+                            </div>
+                            <div class="escada baixo-direita">
+                                <span></span><span></span><span></span><span></span>
+                            </div>
 
-                        <div class="slide">
-
-                            <h1>slide1</h1>
+                            <h1>O Wrapped de vocês</h1>
+                            <p>223 dias de risadas, momentos felizes e tristes mas sempre muito amor</p>
 
                         </div>
 
@@ -277,10 +295,9 @@
 
                 </div>
 
-                <div class="nav">
-                    <button onclick="mudarSlide(-1)"><i class="ri-arrow-left-circle-fill"></i> </button>
-                    <button onclick="mudarSlide(1)">
-                        <i class="ri-arrow-right-circle-fill"></i> </button>
+                <div class="controles-invisiveis">
+                    <div class="area-clique esquerda" onclick="mudarSlide(-1)"></div>
+                    <div class="area-clique direita" onclick="mudarSlide(1)"></div>
                 </div>
 
             </div>
