@@ -682,6 +682,40 @@ ul li i:hover{
 
 /* wrapped expansion */
 
+.progress-container {
+    position: absolute;
+    top: 20px; /* Desci um pouco para não colar no topo */
+    left: 0;
+    width: 100%;
+    padding: 0 15px;
+    display: flex;
+    gap: 6px;
+    z-index: 100002; /* Aumentei o z-index */
+    box-sizing: border-box;
+    height: 10px; /* Altura para o container */
+}
+
+#progress-bars {
+    display: flex;
+    width: 100%;
+    gap: 5px;
+}
+
+.progress-bar-bg {
+    flex: 1;
+    height: 4px; /* Aumentei um pouco a espessura */
+    background-color: rgba(255, 255, 255, 0.3); /* Um pouco mais visível */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background-color: white;
+    transition: width 0.3s ease; /* Transição mais suave */
+}
+
 .wrapped-full{
     display:none;
 }
@@ -760,6 +794,8 @@ ul li i:hover{
 
     text-shadow: 0px 0px 20px rgba(0, 0, 0, 5);
 
+    position: relative;
+
 }
 
 @keyframes pulse {
@@ -830,7 +866,177 @@ ul li i:hover{
 
 /* DENTRO DO WRAPPED - SLIDES */
 
-.escada {
+@keyframes infiniteScrollAndStop {
+  /* 1ª Volta: Ele entra por cima e sai por baixo */
+  0% { transform: translateY(-100vh); display: flex;}
+  30%{transform: translateY(100vh); display: none;}
+
+  /* 2ª Volta: Ele reaparece no topo e sai por baixo de novo */
+  31% { transform: translateY(-100vh); display: flex; opacity: 0;}
+  60% { transform: translateY(100vh); display: none; opacity: 1}
+
+  /* Volta Final: Ele entra e para no 0 (lugar original) */
+  61% { transform: translateY(-100vh); display: none;}
+  100% { transform: translateY(0); display: flex;}
+}
+
+#horas{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.hr-dias{
+    width: 100vw;
+    height: calc(100vh / 6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5rem;
+    text-shadow: none;
+    animation: infiniteScrollAndStop 5s cubic-bezier(0.5, 0.05, 0.55, 0.95) forwards;
+}
+
+.hr-dias h1{
+    animation: entrada 2s ease, pulse 2s ease-in-out infinite;
+}
+
+
+#h1{
+    background-color: #1DB954;
+    color: black;
+}
+
+#h1 h1{
+    margin-top: 15px;
+}
+
+#h2{
+    background-color: #C56893;
+    color: black;
+}
+
+#h3{
+    background-color: #D8701B;
+    color: black;
+
+}
+
+#h4{
+    background-color: #50008C;
+    color: rgb(209, 209, 43);
+}
+
+#h5{
+    background-color: #121212;
+    color: #D8701B;
+    
+}
+
+#h6{
+    background-color: #C56893;
+    color: black;
+}
+
+/* -- */
+
+.slide2::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    left: 0;
+    
+    background: linear-gradient(to bottom, #580f41, #C56893);
+    
+    -webkit-mask-image: repeating-linear-gradient(
+        90deg, 
+        black 0px, 
+        black 30px, 
+        transparent 30px, 
+        transparent 35px
+    );
+    mask-image: repeating-linear-gradient(
+        90deg, 
+        black 0px, 
+        black 30px, 
+        transparent 30px, 
+        transparent 35px
+    );
+
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 30%);
+}
+
+.slide2::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    left: 0;
+    
+    /* Gradiente Vertical (Laranja para Amarelo) igual à foto */
+    background: linear-gradient(to bottom, #580f41, #C56893);
+    
+    /* Máscara que cria o corte inclinado */
+    -webkit-mask-image: repeating-linear-gradient(
+        90deg, 
+        black 0px, 
+        black 30px, 
+        transparent 30px, 
+        transparent 35px
+    );
+    mask-image: repeating-linear-gradient(
+        90deg, 
+        black 0px, 
+        black 30px, 
+        transparent 30px, 
+        transparent 35px
+    );
+
+    clip-path: polygon(0 0, 100% 0, 100% 30%, 0 100%);
+}
+
+
+
+/* Posicionamento no Topo */
+.slide2::before {
+    top: 0;
+}
+
+/* Posicionamento na Base (Invertido) */
+.slide2::after {
+    bottom: 0;
+    transform: scaleY(-1); /* Inverte para a escadinha olhar para cima */
+}
+
+/* Estilização do texto central */
+.conteudo-central {
+    animation: entrada 2s ease, pulse 2s ease-in-out infinite;
+    text-align: center;
+    color: white;
+    z-index: 10; /* Garante que o texto fique acima de qualquer fundo */
+}
+
+.conteudo-central h2 {
+    font-size: 1.5rem;
+    opacity: .8;
+    margin-bottom: 0;
+}
+
+.conteudo-central h1 {
+    font-size: 80px;
+    font-weight: 900;
+    margin: 10px 0;
+}
+
+.conteudo-central p {
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+/* --- */
+
+.escada, .escada2 {
     position: absolute;
     display: flex;
     gap: 6px;
@@ -850,7 +1056,12 @@ ul li i:hover{
     }
 }
 
-.escada span {
+.escada2{
+    z-index: 999999;
+}
+
+.escada span, .escada2 span {
+    display: block;
     width: 30px;
     /* Se quiser a cor exata do print (verde mais fechado): */
     background: linear-gradient(to bottom, #cf2298, #5e0f45); 
@@ -858,86 +1069,81 @@ ul li i:hover{
 }
 
 /* --- TOPO ESQUERDA --- */
-.topo-esquerda { 
+.topo-esquerda, .topo-esquerda2 { 
     top: 0; 
     left: 0px; 
     align-items: flex-start; 
 }
-.topo-esquerda span:nth-child(1) { 
+.topo-esquerda span:nth-child(1), .topo-esquerda2 span:nth-child(1) { 
     height: 250px; 
 }
-.topo-esquerda span:nth-child(2) { 
+.topo-esquerda span:nth-child(2), .topo-esquerda2 span:nth-child(2) { 
     height: 210px; 
 }
-.topo-esquerda span:nth-child(3) { 
+.topo-esquerda span:nth-child(3), .topo-esquerda2 span:nth-child(3) { 
     height: 170px; 
 }
-.topo-esquerda span:nth-child(4) { 
+.topo-esquerda span:nth-child(4), .topo-esquerda2 span:nth-child(4) { 
     height: 140px; 
-}
-.topo-esquerda span:nth-child(5) { 
-    height: 110px; 
 }
 
 /* --- TOPO DIREITA (Invertida) --- */
-.topo-direita { 
+.topo-direita, .topo-direita2{ 
     top: 0; 
     right: 0px; 
     align-items: flex-start; 
 }
 
-.topo-direita span:nth-child(1) { 
+.topo-direita span:nth-child(1), .topo-direita2 span:nth-child(1) { 
     height: 140px; 
 }
-.topo-direita span:nth-child(2) { 
+.topo-direita span:nth-child(2), .topo-direita2 span:nth-child(2) { 
     height: 170px; 
 }
-.topo-direita span:nth-child(3) { 
+.topo-direita span:nth-child(3), .topo-direita2 span:nth-child(3) { 
     height: 210px; 
 }
-.topo-direita span:nth-child(4) { 
+.topo-direita span:nth-child(4), .topo-direita2 span:nth-child(4) { 
     height: 250px; 
 }
 
 /* --- BAIXO ESQUERDA --- */
-.baixo-esquerda { 
+.baixo-esquerda, .baixo-esquerda2 { 
     bottom: 0; 
     left: 0px; 
     align-items: flex-end; 
 }
-.baixo-esquerda span:nth-child(1) { 
+.baixo-esquerda span:nth-child(1), .baixo-esquerda2 span:nth-child(1) { 
     height: 250px; 
 }
-.baixo-esquerda span:nth-child(2) { 
+.baixo-esquerda span:nth-child(2), .baixo-esquerda2 span:nth-child(2) { 
     height: 210px; 
 }
-.baixo-esquerda span:nth-child(3) { 
+.baixo-esquerda span:nth-child(3), .baixo-esquerda2 span:nth-child(3) { 
     height: 170px; 
 }
-.baixo-esquerda span:nth-child(4) { 
+.baixo-esquerda span:nth-child(4), .baixo-esquerda2 span:nth-child(4) { 
     height: 140px; 
 }
-.baixo-esquerda span:nth-child(5) { 
-    height: 110px; 
-}
+
 
 /* --- BAIXO DIREITA (Invertida) --- */
-.baixo-direita { 
+.baixo-direita, .baixo-direita2 { 
     bottom: 0; 
     right: 0px; 
     align-items: flex-end; 
 }
 
-.baixo-direita span:nth-child(1) { 
+.baixo-direita span:nth-child(1), .baixo-direita2 span:nth-child(1) { 
     height: 140px; 
 }
-.baixo-direita span:nth-child(2) { 
+.baixo-direita span:nth-child(2), .baixo-direita2 span:nth-child(2) { 
     height: 170px; 
 }
-.baixo-direita span:nth-child(3) { 
+.baixo-direita span:nth-child(3), .baixo-direita2 span:nth-child(3) { 
     height: 210px; 
 }
-.baixo-direita span:nth-child(4) { 
+.baixo-direita span:nth-child(4), .baixo-direita2 span:nth-child(4) { 
     height: 250px; 
 }
 
@@ -995,5 +1201,167 @@ ul li i:hover{
     color: white;
     animation: entrada 2s ease ,pulse 2s ease-in-out infinite;
 
+}
+
+/* -- */
+
+.timeline-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 50px 0px;
+    display: flex;
+    flex-flow: column;
+    gap: 70px;
+    overflow-y: auto;
+}
+
+
+
+/* A Linha Vertical Centralizada */
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #ffffff33;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.moment{
+    width: 1fr;
+    display: flex;
+    justify-content: center;
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.moment h1{
+    font-size: 1rem;
+}
+
+.moment p{
+    font-size: 1rem;
+}
+
+.card-moment{
+    background-color: white;
+    color:black;
+    padding: 10px;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    border-radius: 10px;
+    width: 80%;
+}
+
+.card-m1{
+    transform: rotate(-10deg);
+}
+
+.card-m2{
+    transform: rotate(10deg);
+}
+
+.card-moment .img-moment1{
+    width: 100%;
+    height: 130px;
+    background-image: url(imgs/palhaco.jpeg);
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.card-moment .img-moment2{
+    width: 100%;
+    height: 120px;
+    background-image: url(imgs/nossas-primeiras-interacoes.jpeg);
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.card-moment .img-moment3{
+    width: 100%;
+    height: 120px;
+    background-image: url(imgs/noises-na-escola.jpeg);
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.card-moment .img-moment4{
+    width: 100%;
+    height: 120px;
+    background-image: url(imgs/cineminha.jpeg);
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.card-moment .img-moment5{
+    width: 100%;
+    height: 120px;
+    background-image: url(imgs/eternizados-no-museu.jpeg);
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.card-moment .img-moment6{
+    width: 100%;
+    height: 120px;
+    background-image: url(imgs/eu-admirando-ela.jpeg);
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.card-moment .img-moment7{
+    width: 100%;
+    height: 120px;
+    background-image: url(imgs/eu-e-meubem.jpeg);
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.card-moment .img-moment8{
+    width: 100%;
+    height: 120px;
+    background-image: url(imgs/heroG.jpeg);
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.text-moment{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: column;
+}
+
+.text-moment h1{
+    font-size: 1.2rem;
+}
+
+.text-moment p{
+    font-size: .8rem;
+}
+
+.moment-left .dot{
+    transform: translate(20%, 10%);
+}
+
+.moment-right .dot{
+    transform: translate(-20%, 10%);
 }
 

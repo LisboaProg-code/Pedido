@@ -265,28 +265,36 @@ function pararCoracoes() {
   clearInterval(intervalo);
 }
 
-function wrapped(){
-  const container = document.querySelector(".conteiner_wrapped")
-  container.classList.add("expanded")
-  document.querySelector(".wrapped-full").style.display = "block";
-  iniciarCoracoes();
+let slideAtual = 0;
 
-  const wrapped = document.getElementById("wrapped");
+function wrapped() {
+    const container = document.querySelector(".conteiner_wrapped");
+    const wrappedFull = document.querySelector(".wrapped-full");
+    
+    // PRIMEIRO: Mostra o container
+    container.classList.add("expanded");
+    wrappedFull.style.display = "flex"; // Mudei de block para flex para alinhar com seu CSS
 
-    if(!document.startViewTransition){
-        wrapped.classList.add("expanded");
-        return;
+    // SEGUNDO: Inicia as animações e barras (agora os elementos existem no DOM visível)
+    iniciarCoracoes();
+    
+    // Pequeno delay para garantir que o navegador renderizou os slides
+    setTimeout(() => {
+        inicializarBarrasProgresso();
+    }, 50);
+
+    const wrappedElement = document.getElementById("wrapped");
+    if (document.startViewTransition) {
+        document.startViewTransition(() => {
+            wrappedElement.classList.add("expanded");
+        });
+    } else {
+        wrappedElement.classList.add("expanded");
     }
-
-    document.startViewTransition(()=>{
-        wrapped.classList.add("expanded");
-    });
-
-
 }
 
 function closeWrapped(event) {
-    if(event) event.stopPropagation();
+    if (event) event.stopPropagation();
 
     const card = document.getElementById('wrapped');
 
@@ -300,19 +308,84 @@ function closeWrapped(event) {
 
     document.querySelector(".wrapped-full").style.display = "none";
     pararCoracoes();
+    
+    // 2. Reseta o contador para começar do início na próxima vez
+    slideAtual = 0; 
 }
 
-let slideAtual = 0;
-
-function mudarSlide(direcao){
-
+function mudarSlide(direcao) {
     const slides = document.getElementById("slides");
     const totalSlides = slides.children.length;
 
     slideAtual += direcao;
 
-    if(slideAtual >= totalSlides) slideAtual = totalSlides - 1;
-    if(slideAtual < 0) slideAtual = 0;
+    // Travas de segurança para não passar do limite
+    if (slideAtual >= totalSlides) slideAtual = totalSlides - 1;
+    if (slideAtual < 0) slideAtual = 0;
 
     slides.style.transform = `translateX(-${slideAtual * 100}vw)`;
+
+    // 3. Atualiza qual barra deve estar preenchida
+    atualizarBarras();
+}
+
+// --- FUNÇÕES AUXILIARES PARA AS BARRAS ---
+
+function inicializarBarrasProgresso() {
+    const containerBarras = document.getElementById('progress-bars');
+    const slidesTrack = document.getElementById("slides");
+    
+    if (!slidesTrack) return; // Segurança
+
+    const totalSlides = slidesTrack.children.length;
+    console.log("Total de slides encontrados:", totalSlides); // Verifique o console (F12)
+    
+    containerBarras.innerHTML = ''; 
+
+    for (let i = 0; i < totalSlides; i++) {
+        const bg = document.createElement('div');
+        bg.className = 'progress-bar-bg';
+        
+        const fill = document.createElement('div');
+        fill.className = 'progress-bar-fill';
+        fill.id = `fill-${i}`;
+        
+        bg.appendChild(fill);
+        containerBarras.appendChild(bg);
+    }
+    atualizarBarras();
+}
+
+function atualizarBarras() {
+    const slidesTrack = document.getElementById("slides");
+    if (!slidesTrack) return;
+
+    const totalSlides = slidesTrack.children.length;
+
+    for (let i = 0; i < totalSlides; i++) {
+        const fill = document.getElementById(`fill-${i}`);
+        if (!fill) continue;
+
+        if (i < slideAtual) {
+            // Slides que já passaram: 100%
+            fill.style.width = '100%';
+            fill.classList.add('finished');
+        } 
+        else if (i === slideAtual) {
+            // SE FOR O ÚLTIMO SLIDE: Fica pintado (100%)
+            // SE NÃO FOR O ÚLTIMO: Fica em 0% (esperando carregar ou clique)
+            if (slideAtual === totalSlides - 1) {
+                fill.style.width = '100%';
+                fill.classList.add('finished');
+            } else {
+                fill.style.width = '0%';
+                fill.classList.remove('finished');
+            }
+        } 
+        else {
+            // Slides futuros: 0%
+            fill.style.width = '0%';
+            fill.classList.remove('finished');
+        }
+    }
 }
