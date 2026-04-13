@@ -83,7 +83,8 @@ function expandStory() {
 const listaFotos1 = [
     'imgs/eu-e-meuamor.jpeg',
     'imgs/noises-na-escola.jpeg',
-    'imgs/cineminha.jpeg'
+    'imgs/cineminha.jpeg',
+    'imgs/nos2-em-ksa.jpeg'
 ];
 
 let foto1Atual = 0;
@@ -141,7 +142,8 @@ function expandStory2() {
 const listaFotos2 = [
     'imgs/alien.jpeg',
     'imgs/extremos.jpeg',
-    'imgs/palhaco2.jpeg'
+    'imgs/palhaco2.jpeg',
+    "imgs/nos-lampiao.jpeg"
 ];
 
 let foto2Atual = 0;
@@ -198,7 +200,8 @@ let foto3Atual = 0;
 const listaFotos3 = [
     'imgs/eu-e-meubem.jpeg',
     'imgs/eu-admirando-ela.jpeg',
-    'imgs/nossas-primeiras-interacoes.jpeg'
+    'imgs/nossas-primeiras-interacoes.jpeg',
+    'imgs/alianca.jpeg'
 ];
 
 function mudarFt3(direcao) {
