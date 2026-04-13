@@ -300,6 +300,7 @@ function closeWrapped(event) {
     if (event) event.stopPropagation();
 
     const card = document.getElementById('wrapped');
+    const slides = document.getElementById("slides");
 
     if (document.startViewTransition) {
         document.startViewTransition(() => {
@@ -312,8 +313,16 @@ function closeWrapped(event) {
     document.querySelector(".wrapped-full").style.display = "none";
     pararCoracoes();
     
-    // 2. Reseta o contador para começar do início na próxima vez
-    slideAtual = 0; 
+    // RESETA O SLIDE
+    slideAtual = 0;
+
+    // 🔥 ESSA LINHA É O QUE FALTAVA
+    if (slides) {
+        slides.style.transform = `translateX(0vw)`;
+    }
+
+    // (opcional) resetar barras também
+    atualizarBarras();
 }
 
 function mudarSlide(direcao) {
