@@ -158,10 +158,12 @@ ul li i:hover{
 }
 
 
-.controls .ri-play-circle-fill{
+.controls .ri-play-circle-fill, .ri-pause-circle-fill{
     font-size: 4rem;
     transform: translateY(-30%);
+    cursor: pointer;
 }
+
 
 /* --msc-- */
 

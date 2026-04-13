@@ -1,3 +1,42 @@
+const audio = document.getElementById('main-audio');
+const playBtn = document.getElementById('play-btn');
+const progress = document.getElementById('progress');
+const currentTimeEl = document.getElementById('current-time');
+const durationEl = document.getElementById('duration');
+
+// Função para Play/Pause
+playBtn.addEventListener('click', () => {
+    if (audio.paused) {
+        audio.play();
+        playBtn.classList.replace('ri-play-circle-fill', 'ri-pause-circle-fill');
+    } else {
+        audio.pause();
+        playBtn.classList.replace('ri-pause-circle-fill', 'ri-play-circle-fill');
+    }
+});
+
+// Atualiza a barra de progresso e o tempo
+audio.addEventListener('timeupdate', (e) => {
+    const { duration, currentTime } = e.srcElement;
+    
+    // Atualiza largura da barra
+    const progressPercent = (currentTime / duration) * 100;
+    progress.style.width = `${progressPercent}%`;
+
+    // Formata tempo (Ex: 0:00)
+    if (duration) {
+        durationEl.innerText = formatTime(duration);
+        currentTimeEl.innerText = formatTime(currentTime);
+    }
+});
+
+// Função auxiliar para formatar segundos em Minutos:Segundos
+function formatTime(seconds) {
+    const min = Math.floor(seconds / 60);
+    const sec = Math.floor(seconds % 60);
+    return `${min}:${sec < 10 ? '0' + sec : sec}`;
+}
+
 function mostrarMensagem() {
   const card = document.getElementById('mensagem');
   
